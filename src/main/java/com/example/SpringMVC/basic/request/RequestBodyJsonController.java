@@ -21,6 +21,8 @@ import java.nio.charset.StandardCharsets;
 @Controller
 public class RequestBodyJsonController {
 
+    // JSON으로 데이터가 넘어올 경우 Jackson2HttpMessageConverter의 ObjectMapper를 사용하여 해당 JSON에 해당하는 자바 객체에 값이 할당된다.
+    // JSON을 Object([자바]객체를) Mapper(매핑 해주는 것)이 필요해서 사용
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/request-body-json-v1")
