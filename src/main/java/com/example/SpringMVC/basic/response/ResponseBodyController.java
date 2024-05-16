@@ -20,11 +20,20 @@ import java.io.IOException;
 @RestController
 public class ResponseBodyController {
 
+    /**
+     * @RequestBody, HttpEntity(RequestEntity) -> 각각 두 개에 따라서 처리하는 ArgumentResolver가 따로 존재함
+     * 개발자가 작성한 파라미터를 보고 httpMessageConverter를 거쳐 ArgumentResolver가 필요한 객체를 만들어줌
+     */
+
     @GetMapping("/response-body-string-v1")
     public void responseBodyV1(HttpServletResponse response) throws IOException {
         response.getWriter().write("ok");
     }
 
+    /**
+     * @ResponseBody, HttpEntity(ResponseEntity)
+     * 응답의 경우 ReturnValueHandler가 httpMessageConverter를 호출해 응답 결과를 만들어줌
+     */
     @GetMapping("/response-body-string-v2")
     public ResponseEntity<String> responseBodyV2() {
         return new ResponseEntity<>("ok", HttpStatus.OK);
